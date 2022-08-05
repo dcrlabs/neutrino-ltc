@@ -1,7 +1,6 @@
-PKG := github.com/ltcsuite/neutrino
+PKG := github.com/dcrlabs/neutrino-ltc
 
-BTCD_PKG := github.com/ltcsuite/ltcd
-LINT_PKG := github.com/golangci/golangci-lint/cmd/golangci-lint
+LTCD_PKG := github.com/ltcsuite/ltcd
 GOACC_PKG := github.com/ory/go-acc
 GOIMPORTS_PKG := golang.org/x/tools/cmd/goimports
 
@@ -9,20 +8,21 @@ GO_BIN := ${GOPATH}/bin
 LINT_BIN := $(GO_BIN)/golangci-lint
 GOACC_BIN := $(GO_BIN)/go-acc
 
-LINT_COMMIT := v1.18.0
+# NOTE: Install linter locally with
+# curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.48.0
+
 GOACC_COMMIT := v0.2.6
 
-DEPGET := cd /tmp && GO111MODULE=on go get -v
-GOBUILD := GO111MODULE=on go build -v
-GOINSTALL := GO111MODULE=on go install -v
-GOTEST := GO111MODULE=on go test 
+GOBUILD := go build -v
+GOINSTALL := go install -v
+GOTEST := go test 
 
 GOLIST := go list -deps $(PKG)/... | grep '$(PKG)'
 GOLIST_COVER := $$(go list -deps $(PKG)/... | grep '$(PKG)')
 GOFILES_NOVENDOR = $(shell find . -type f -name '*.go' -not -path "./vendor/*")
 
-BTCD_COMMIT := $(shell cat go.mod | \
-		grep $(BTCD_PKG) | \
+LTCD_COMMIT := $(shell cat go.mod | \
+		grep $(LTCD_PKG) | \
 		head -n1 | \
 		awk -F " " '{ print $$2 }' | \
 		awk -F "/" '{ print $$1 }')
@@ -54,21 +54,19 @@ all: build check
 # DEPENDENCIES
 # ============
 
-btcd:
-	@$(call print, "Installing btcd.")
-	$(DEPGET) $(BTCD_PKG)@$(BTCD_COMMIT)
-
-$(LINT_BIN):
-	@$(call print, "Fetching linter")
-	$(DEPGET) $(LINT_PKG)@$(LINT_COMMIT)
+# Cannot work with Go 1.18+ which disallows replaces in release installs:
+ltcd:
+	@$(call print, "Installing ltcd.")
+	(cd /tmp && git clone -b $(LTCD_COMMIT) https://$(LTCD_PKG) ltcd && \
+	cd ltcd && $(GOINSTALL))
 
 $(GOACC_BIN):
 	@$(call print, "Fetching go-acc")
-	$(DEPGET) $(GOACC_PKG)@$(GOACC_COMMIT)
+	$(GOINSTALL) $(GOACC_PKG)@$(GOACC_COMMIT)
 
 goimports:
 	@$(call print, "Installing goimports.")
-	$(DEPGET) $(GOIMPORTS_PKG)
+	$(GOINSTALL) $(GOIMPORTS_PKG)@latest
 
 # ============
 # INSTALLATION
@@ -84,15 +82,15 @@ build:
 
 check: unit
 
-unit: btcd
+unit: ltcd
 	@$(call print, "Running unit tests.")
 	$(GOLIST) | $(XARGS) env $(GOTEST)
 
-unit-cover: btcd $(GOACC_BIN)
+unit-cover: ltcd $(GOACC_BIN)
 	@$(call print, "Running unit coverage tests.")
 	$(GOACC_BIN) $(GOLIST_COVER)
 
-unit-race: btcd
+unit-race: ltcd
 	@$(call print, "Running unit race tests.")
 	env CGO_ENABLED=1 GORACE="history_size=7 halt_on_errors=1" $(GOLIST) | $(XARGS) env $(GOTEST) -race
 
@@ -106,7 +104,7 @@ fmt: goimports
 	@$(call print, "Formatting source.")
 	gofmt -l -w -s $(GOFILES_NOVENDOR)
 
-lint: $(LINT_BIN)
+lint:
 	@$(call print, "Linting source.")
 	$(LINT)
 
@@ -115,7 +113,7 @@ clean:
 	$(RM) coverage.txt
 
 .PHONY: all \
-	btcd \
+	ltcd \
 	default \
 	build \
 	check \

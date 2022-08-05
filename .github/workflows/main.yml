@@ -15,7 +15,7 @@ defaults:
 env:
   GOCACHE: /home/runner/work/go/pkg/build
   GOPATH: /home/runner/work/go
-  GO_VERSION: 1.16.x
+  GO_VERSION: 1.18.x
 
 jobs:
   ########################
@@ -26,10 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: setup go ${{ env.GO_VERSION }}
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: '${{ env.GO_VERSION }}'
 
@@ -44,16 +44,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # The same as "git fetch --unshallow" but also works when running the
           # action locally with "act".
           fetch-depth: 0
 
       - name: setup go ${{ env.GO_VERSION }}
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: '${{ env.GO_VERSION }}'
+
+      - name: Install Linter
+        run: "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.48.0"
 
       - name: lint
         run: make lint
@@ -68,24 +71,24 @@ jobs:
       # Allow other tests in the matrix to continue if one fails.
       fail-fast: false
       matrix:
-        unit_type:
-          - unit-cover
+        unit_type: 
           - unit-race
+          #- unit-cover
     steps:
       - name: git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: setup go ${{ env.GO_VERSION }}
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: '${{ env.GO_VERSION }}'
 
       - name: run ${{ matrix.unit_type }}
         run: make ${{ matrix.unit_type }}
 
-      - name: Send coverage
-        uses: shogo82148/actions-goveralls@v1
-        if: matrix.unit_type == 'unit-cover'
-        with:
-          path-to-profile: coverage.txt
-          parallel: true
+      # - name: Send coverage
+      #   uses: shogo82148/actions-goveralls@v1
+      #   if: matrix.unit_type == 'unit-cover'
+      #   with:
+      #     path-to-profile: coverage.txt
+      #     parallel: true
