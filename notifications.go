@@ -9,9 +9,10 @@ package neutrino
 import (
 	"errors"
 
+	"github.com/dcrlabs/neutrino-ltc/query"
+
 	"github.com/ltcsuite/ltcd/addrmgr"
 	"github.com/ltcsuite/ltcd/connmgr"
-	"github.com/ltcsuite/neutrino/query"
 )
 
 type getConnCountMsg struct {

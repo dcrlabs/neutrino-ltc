@@ -7,11 +7,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/ltcutil"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/headerfs"
 )
 
 type MockChainClient struct {

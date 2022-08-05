@@ -7,15 +7,16 @@ import (
 	"sync"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/cache"
+	"github.com/dcrlabs/neutrino-ltc/filterdb"
+	"github.com/dcrlabs/neutrino-ltc/pushtx"
+
 	"github.com/ltcsuite/ltcd/blockchain"
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/ltcutil"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs/builder"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/cache"
-	"github.com/ltcsuite/neutrino/filterdb"
-	"github.com/ltcsuite/neutrino/pushtx"
 )
 
 var (

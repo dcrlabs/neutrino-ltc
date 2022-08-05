@@ -7,6 +7,8 @@ import (
 	"sort"
 	"testing"
 
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+
 	"github.com/ltcsuite/ltcd/chaincfg"
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
@@ -15,7 +17,6 @@ import (
 	"github.com/ltcsuite/ltcd/wire"
 	"github.com/ltcsuite/ltcwallet/walletdb"
 	_ "github.com/ltcsuite/ltcwallet/walletdb/bdb" // bdb init() registers a driver
-	"github.com/ltcsuite/neutrino/headerfs"
 )
 
 func decodeHashNoError(str string) *chainhash.Hash {

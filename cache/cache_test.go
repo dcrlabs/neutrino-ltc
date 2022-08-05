@@ -4,13 +4,14 @@ import (
 	"crypto/rand"
 	"testing"
 
+	"github.com/dcrlabs/neutrino-ltc/cache"
+	"github.com/dcrlabs/neutrino-ltc/cache/lru"
+	"github.com/dcrlabs/neutrino-ltc/filterdb"
+
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/ltcutil"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/cache"
-	"github.com/ltcsuite/neutrino/cache/lru"
-	"github.com/ltcsuite/neutrino/filterdb"
 )
 
 // TestBlockFilterCaches tests that we can put and retrieve elements from all
