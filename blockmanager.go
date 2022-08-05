@@ -12,6 +12,13 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/banman"
+	"github.com/dcrlabs/neutrino-ltc/blockntfns"
+	"github.com/dcrlabs/neutrino-ltc/chainsync"
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+	"github.com/dcrlabs/neutrino-ltc/headerlist"
+	"github.com/dcrlabs/neutrino-ltc/query"
+
 	"github.com/ltcsuite/ltcd/blockchain"
 	"github.com/ltcsuite/ltcd/chaincfg"
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
@@ -19,12 +26,6 @@ import (
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs/builder"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/banman"
-	"github.com/ltcsuite/neutrino/blockntfns"
-	"github.com/ltcsuite/neutrino/chainsync"
-	"github.com/ltcsuite/neutrino/headerfs"
-	"github.com/ltcsuite/neutrino/headerlist"
-	"github.com/ltcsuite/neutrino/query"
 )
 
 const (

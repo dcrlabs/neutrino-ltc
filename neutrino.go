@@ -12,6 +12,14 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/banman"
+	"github.com/dcrlabs/neutrino-ltc/blockntfns"
+	"github.com/dcrlabs/neutrino-ltc/cache/lru"
+	"github.com/dcrlabs/neutrino-ltc/filterdb"
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+	"github.com/dcrlabs/neutrino-ltc/pushtx"
+	"github.com/dcrlabs/neutrino-ltc/query"
+
 	"github.com/ltcsuite/ltcd/addrmgr"
 	"github.com/ltcsuite/ltcd/blockchain"
 	"github.com/ltcsuite/ltcd/chaincfg"
@@ -21,13 +29,6 @@ import (
 	"github.com/ltcsuite/ltcd/peer"
 	"github.com/ltcsuite/ltcd/wire"
 	"github.com/ltcsuite/ltcwallet/walletdb"
-	"github.com/ltcsuite/neutrino/banman"
-	"github.com/ltcsuite/neutrino/blockntfns"
-	"github.com/ltcsuite/neutrino/cache/lru"
-	"github.com/ltcsuite/neutrino/filterdb"
-	"github.com/ltcsuite/neutrino/headerfs"
-	"github.com/ltcsuite/neutrino/pushtx"
-	"github.com/ltcsuite/neutrino/query"
 )
 
 // These are exported variables so they can be changed by users.

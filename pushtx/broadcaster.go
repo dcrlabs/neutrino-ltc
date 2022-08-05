@@ -6,10 +6,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/blockntfns"
+
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/wire"
 	"github.com/ltcsuite/ltcwallet/wtxmgr"
-	"github.com/ltcsuite/neutrino/blockntfns"
 )
 
 var (

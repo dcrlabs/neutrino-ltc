@@ -5,8 +5,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/blockntfns"
+
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/blockntfns"
 )
 
 var emptyHeader wire.BlockHeader
