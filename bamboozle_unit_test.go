@@ -2,7 +2,6 @@ package neutrino
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"sort"
 	"testing"
@@ -521,7 +520,7 @@ func heightToHeader(height uint32) *wire.BlockHeader {
 }
 
 func runCheckCFCheckptSanityTestCase(t *testing.T, testCase *cfCheckptTestCase) {
-	tempDir, err := ioutil.TempDir("", "neutrino")
+	tempDir, err := os.MkdirTemp("", "neutrino")
 	if err != nil {
 		t.Fatalf("Failed to create temporary directory: %s", err)
 	}

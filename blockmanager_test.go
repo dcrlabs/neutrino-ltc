@@ -3,7 +3,6 @@ package neutrino
 import (
 	"encoding/binary"
 	"fmt"
-	"io/ioutil"
 	"math/rand"
 	"os"
 	"strings"
@@ -55,7 +54,7 @@ func setupBlockManager() (*blockManager, headerfs.BlockHeaderStore,
 	*headerfs.FilterHeaderStore, func(), error) {
 
 	// Set up the block and filter header stores.
-	tempDir, err := ioutil.TempDir("", "neutrino")
+	tempDir, err := os.MkdirTemp("", "neutrino")
 	if err != nil {
 		return nil, nil, nil, nil, fmt.Errorf("Failed to create "+
 			"temporary directory: %s", err)

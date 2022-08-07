@@ -1,7 +1,6 @@
 package filterdb
 
 import (
-	"io/ioutil"
 	"math/rand"
 	"os"
 	"reflect"
@@ -17,7 +16,7 @@ import (
 )
 
 func createTestDatabase() (func(), FilterDatabase, error) {
-	tempDir, err := ioutil.TempDir("", "neutrino")
+	tempDir, err := os.MkdirTemp("", "neutrino")
 	if err != nil {
 		return nil, nil, err
 	}
