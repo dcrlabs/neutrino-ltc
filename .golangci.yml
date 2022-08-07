@@ -13,27 +13,28 @@ linters-settings:
     suggest-new: true
 
 linters:
-  enable-all: true
-  disable:
-    # Global variables are used in many places throughout the code base.
-    - gochecknoglobals
-
-    # Some lines are over 80 characters on purpose and we don't want to make them
-    # even longer by marking them as 'nolint'.
-    - lll
-
-    # We have long functions, especially in tests. Moving or renaming those would
-    # trigger funlen problems that we may not want to solve at that time.
-    - funlen
-
-    # Disable for now as we haven't yet tuned the sensitivity to our codebase
-    # yet.  Enabling by default for example, would also force new contributors to
-    # potentially extensively refactor code, when they want to smaller change to
-    # land.
-    - gocyclo
-
-    # Init functions are used by loggers throughout the codebase.
-    - gochecknoinits
+  disable-all: true
+  enable:
+    - asciicheck
+    - deadcode
+    - dupl
+    - errcheck
+    - goimports
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - prealloc
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unconvert
+    - unused
+    - varcheck
+    
+    # Others to consider that do not pass presently:
+    # - nilerr
+    # - makezero
 
 issues:
   exclude-rules:

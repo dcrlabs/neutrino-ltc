@@ -3,7 +3,6 @@ package headerfs
 import (
 	"bytes"
 	"crypto/sha256"
-	"io/ioutil"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -20,7 +19,7 @@ import (
 
 func createTestBlockHeaderStore() (func(), walletdb.DB, string,
 	*blockHeaderStore, error) {
-	tempDir, err := ioutil.TempDir("", "store_test")
+	tempDir, err := os.MkdirTemp("", "store_test")
 	if err != nil {
 		return nil, nil, "", nil, err
 	}
@@ -225,7 +224,7 @@ func TestBlockHeaderStoreRecovery(t *testing.T) {
 }
 
 func createTestFilterHeaderStore() (func(), walletdb.DB, string, *FilterHeaderStore, error) {
-	tempDir, err := ioutil.TempDir("", "store_test")
+	tempDir, err := os.MkdirTemp("", "store_test")
 	if err != nil {
 		return nil, nil, "", nil, err
 	}
