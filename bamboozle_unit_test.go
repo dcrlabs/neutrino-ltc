@@ -14,6 +14,7 @@ import (
 	"github.com/ltcsuite/ltcd/txscript"
 	"github.com/ltcsuite/ltcd/wire"
 	"github.com/ltcsuite/ltcwallet/walletdb"
+	_ "github.com/ltcsuite/ltcwallet/walletdb/bdb" // bdb init() registers a driver
 	"github.com/ltcsuite/neutrino/headerfs"
 )
 
