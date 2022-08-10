@@ -12,6 +12,13 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/banman"
+	"github.com/dcrlabs/neutrino-ltc/blockntfns"
+	"github.com/dcrlabs/neutrino-ltc/chainsync"
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+	"github.com/dcrlabs/neutrino-ltc/headerlist"
+	"github.com/dcrlabs/neutrino-ltc/query"
+
 	"github.com/ltcsuite/ltcd/blockchain"
 	"github.com/ltcsuite/ltcd/chaincfg"
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
@@ -19,12 +26,6 @@ import (
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs/builder"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/banman"
-	"github.com/ltcsuite/neutrino/blockntfns"
-	"github.com/ltcsuite/neutrino/chainsync"
-	"github.com/ltcsuite/neutrino/headerfs"
-	"github.com/ltcsuite/neutrino/headerlist"
-	"github.com/ltcsuite/neutrino/query"
 )
 
 const (
@@ -1626,14 +1627,14 @@ func (b *blockManager) detectBadPeers(headers map[string]*wire.MsgCFHeaders,
 //
 // We'll use a few strategies to figure out which peers we believe serve
 // invalid filters:
-//	1. If a peers' filter doesn't match on a script that must match, we know
-//	the filter is invalid.
-//	2. If a peers' filter matches on a script that _should not_ match, it
-//	is potentially invalid. In this case we ban peers that matches more
-//	such scripts than other peers.
-//	3. If we cannot detect which filters are invalid from the block
-//	contents, we ban peers serving filters different from the majority of
-//	peers.
+//  1. If a peers' filter doesn't match on a script that must match, we know
+//     the filter is invalid.
+//  2. If a peers' filter matches on a script that _should not_ match, it
+//     is potentially invalid. In this case we ban peers that matches more
+//     such scripts than other peers.
+//  3. If we cannot detect which filters are invalid from the block
+//     contents, we ban peers serving filters different from the majority of
+//     peers.
 func resolveFilterMismatchFromBlock(block *wire.MsgBlock,
 	fType wire.FilterType, filtersFromPeers map[string]*gcs.Filter,
 	threshold int) ([]string, error) {

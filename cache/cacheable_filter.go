@@ -1,9 +1,10 @@
 package cache
 
 import (
+	"github.com/dcrlabs/neutrino-ltc/filterdb"
+
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
-	"github.com/ltcsuite/neutrino/filterdb"
 )
 
 // FilterCacheKey represents the key used to access filters in the FilterCache.

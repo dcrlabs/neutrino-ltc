@@ -12,6 +12,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/cache"
+	"github.com/dcrlabs/neutrino-ltc/cache/lru"
+	"github.com/dcrlabs/neutrino-ltc/filterdb"
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+
 	"github.com/ltcsuite/ltcd/blockchain"
 	"github.com/ltcsuite/ltcd/chaincfg"
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
@@ -19,10 +24,6 @@ import (
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs/builder"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/cache"
-	"github.com/ltcsuite/neutrino/cache/lru"
-	"github.com/ltcsuite/neutrino/filterdb"
-	"github.com/ltcsuite/neutrino/headerfs"
 )
 
 var (
@@ -78,8 +79,8 @@ func loadBlocks(t *testing.T, dataFile string, network wire.BitcoinNet) (
 			return nil, err
 		}
 		if net != uint32(network) {
-			t.Errorf("Block doesn't match network: %v expects %v",
-				net, network)
+			t.Errorf("Block %d doesn't match network: %v expects %v",
+				height, net, uint32(network))
 			return nil, err
 		}
 

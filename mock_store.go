@@ -3,10 +3,11 @@ package neutrino
 import (
 	"fmt"
 
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+
 	"github.com/ltcsuite/ltcd/blockchain"
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/headerfs"
 )
 
 // mockBlockHeaderStore is an implementation of the BlockHeaderStore backed by

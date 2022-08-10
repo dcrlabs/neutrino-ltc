@@ -1,3 +1,5 @@
+//go:build live
+
 package neutrino_test
 
 import (
@@ -14,6 +16,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc"
+	"github.com/dcrlabs/neutrino-ltc/banman"
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+
 	"github.com/btcsuite/btclog"
 	"github.com/ltcsuite/ltcd/btcec/v2"
 	"github.com/ltcsuite/ltcd/btcjson"
@@ -28,9 +34,6 @@ import (
 	"github.com/ltcsuite/ltcwallet/wallet/txauthor"
 	"github.com/ltcsuite/ltcwallet/walletdb"
 	_ "github.com/ltcsuite/ltcwallet/walletdb/bdb"
-	"github.com/ltcsuite/neutrino"
-	"github.com/ltcsuite/neutrino/banman"
-	"github.com/ltcsuite/neutrino/headerfs"
 )
 
 var (

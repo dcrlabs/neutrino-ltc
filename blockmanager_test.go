@@ -10,6 +10,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/banman"
+	"github.com/dcrlabs/neutrino-ltc/blockntfns"
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+	"github.com/dcrlabs/neutrino-ltc/query"
+
 	"github.com/ltcsuite/ltcd/chaincfg"
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/ltcutil/gcs"
@@ -18,10 +23,7 @@ import (
 	"github.com/ltcsuite/ltcd/txscript"
 	"github.com/ltcsuite/ltcd/wire"
 	"github.com/ltcsuite/ltcwallet/walletdb"
-	"github.com/ltcsuite/neutrino/banman"
-	"github.com/ltcsuite/neutrino/blockntfns"
-	"github.com/ltcsuite/neutrino/headerfs"
-	"github.com/ltcsuite/neutrino/query"
+	_ "github.com/ltcsuite/ltcwallet/walletdb/bdb" // bdb init() registers a driver
 )
 
 const (

@@ -6,9 +6,10 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/headerfs"
+
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/ltcutil"
-	"github.com/ltcsuite/neutrino/headerfs"
 )
 
 // getUtxoResult is a simple pair type holding a spend report and error.

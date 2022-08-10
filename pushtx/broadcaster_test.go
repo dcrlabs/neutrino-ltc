@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/dcrlabs/neutrino-ltc/blockntfns"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/ltcsuite/neutrino/blockntfns"
 )
 
 // createTx is a helper method to create random transactions that spend

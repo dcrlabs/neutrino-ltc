@@ -1,4 +1,4 @@
-PKG := github.com/ltcsuite/neutrino
+PKG := github.com/dcrlabs/neutrino-ltc
 
 BTCD_PKG := github.com/ltcsuite/ltcd
 LINT_PKG := github.com/golangci/golangci-lint/cmd/golangci-lint
