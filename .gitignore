@@ -28,3 +28,10 @@ breakpoints.txt
 
 # coverage output
 coverage.txt
+
+*.orig
+*.pprof
+.DS_Store
+
+# Visual Studio Code
+.vscode
