@@ -9,6 +9,7 @@ require (
 	github.com/ltcsuite/ltcd v0.22.0-beta
 	github.com/ltcsuite/ltcd/btcec/v2 v2.1.0
 	github.com/ltcsuite/ltcd/ltcutil v1.1.0
+	github.com/ltcsuite/ltcwallet v0.13.1
 	github.com/ltcsuite/ltcwallet/wallet/txauthor v1.1.0
 	github.com/ltcsuite/ltcwallet/walletdb v1.3.5
 	github.com/ltcsuite/ltcwallet/wtxmgr v1.5.0
@@ -22,10 +23,12 @@ require (
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.0.1 // indirect
 	github.com/decred/dcrd/lru v1.0.0 // indirect
 	github.com/kkdai/bstream v1.0.0 // indirect
+	github.com/lightninglabs/gozmq v0.0.0-20191113021534-d20a764486bf // indirect
 	github.com/ltcsuite/lnd/clock v0.0.0-20200822020009-1a001cbb895a // indirect
 	github.com/ltcsuite/lnd/ticker v1.0.1 // indirect
 	github.com/ltcsuite/ltcwallet/wallet/txrules v1.2.0 // indirect
 	github.com/ltcsuite/ltcwallet/wallet/txsizes v1.1.0 // indirect
+	github.com/ltcsuite/neutrino v0.13.2 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	go.etcd.io/bbolt v1.3.5-0.20200615073812-232d8fc87f50 // indirect
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
